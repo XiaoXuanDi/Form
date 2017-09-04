@@ -1,0 +1,149 @@
+<html>
+<head>
+	<title>表单验证</title>
+	<meta charset="UTF-8">
+	<script language="JavaScript" type="text/javascript">
+		function userName(value) 
+		{
+			var userName = document.getElementById('userName');
+			if (value=="")
+			{
+				userName.style.color="red";
+				userName.innerHTML="用户名不可为空！";
+			}
+			else if (value<='z'&&value>='a'||value<='Z'&&value>='A')
+			//此处是判断开头如果是a到z A到Z的条件，成立则通过。
+			{
+				userName.style.color="green";
+				userName.innerHTML="√";
+			}
+			else
+			{
+				userName.style.color="red";
+				userName.innerHTML="X必须以字母开头！";
+			}
+		}
+		function Key1(value)
+		{
+			var Key1 = document.getElementById('Key1');
+			if (value=="")
+			{
+				Key1.style.color="red";
+				Key1.innerHTML="密码不可为空！";
+			}
+			//密码长度小于6则提示密码长度不够
+			else if (value.length<6)
+			{
+				Key1.style.color="red";
+				Key1.innerHTML="必须在六位以上!";
+			}
+			else
+			{
+				Key1.style.color="green";
+				Key1.innerHTML="√";
+			}
+		}
+		function Key2(value)
+		{
+			var Key1_comfirm = document.getElementById('comfirm').value;
+			//此处的Key1不是上面的函数，"comfirm"是密码的id 用来与确认密码对比是否一致。
+			var Key2 = document.getElementById('Key2');
+			if (value=="")
+			{
+				Key2.style.color="red";
+				Key2.innerHTML="确认密码不可为空！";
+			}
+			//此处是关键！当传入的value值与Key1的都相同才会通过，否则就会执行输出"密码须一致"。
+			else if (value!=Key1_comfirm)
+			{
+				Key2.style.color="red";
+				Key2.innerHTML="密码须一致!";
+			}
+			else
+			{
+				Key2.style.color="green";
+				Key2.innerHTML="√";
+			}
+		}
+		function email(value)
+		{
+			var email = document.getElementById('email');
+			if (value=="")
+			{
+				email.style.color="red";
+				email.innerHTML="邮箱不能为空！";
+			}
+			//此处是判断关键，判断"@"是否存在。
+			else if (value.indexOf("@")==-1)
+			{
+				email.style.color="red";
+				email.innerHTML="邮箱格式不正确";
+			}
+			else
+			{
+				email.style.color="green";
+				email.innerHTML="√";
+			}
+		}
+	</script>
+<style type="text/css">
+	span{ color: red; }
+</style>
+</head>
+<body>
+<div id="outer">
+	<table border="1">
+		<caption>This is my first caption.</caption>
+		<tr >
+			<td colspan="2" style="text-align: center;">用户注册</td>
+		</tr>
+		<tr>
+			<td>用户名：</td>
+			<td><input type="text" name="userName" onchange="userName(this.value)"/><span id="userName"></span></td>
+		</tr>
+			<td>密码：</td>
+			<td><input type="text" name="Key1"  id="comfirm" onchange="Key1(this.value)"/><span id="Key1"></span></td>
+		</tr>
+		<tr>
+			<td>确认密码：</td>
+			<td><input type="text" name="Key2" onchange="Key2(this.value)"/><span id="Key2"></td>
+		</tr>
+		<tr>
+			<td>性别：</td>
+			<td><input type="radio" name="sex">男</input>&nbsp&nbsp&nbsp
+				<input type="radio" name="sex">女</input></td>
+		</tr>
+		<tr>
+			<td>爱好：</td>
+			<td><input type="checkbox">读书</input>
+				<input type="checkbox">游泳</input>
+				<input type="checkbox">游戏</input>
+				<input type="checkbox">旅游</input>
+			</td>
+		</tr>
+		<tr>
+			<td>来自：</td>
+			<td><select ><option value="0">---省或直辖市---</option>
+						<option value="1">广东</option>
+						<option value="2">上海</option>
+						<option value="3">山西</option>
+				</select>
+				<select><option value="0">---城市---</option>
+						<option value="1">梅州</option>
+						<option value="1">广州</option>
+						<option value="1">杭州</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>邮箱：</td>
+			<td><input type="text" name="email" onchange="email(this.value)"/><span id="email"></span></td>
+		</tr>
+		<tr>
+			<td>上传图片：</td>
+			<td><input type="file"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>	
